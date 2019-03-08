@@ -59,7 +59,9 @@ namespace test_work_fin_12.Controllers {
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register (LoginVM loginVM, string role) {
+        public async Task<IActionResult> Register (LoginVM loginVM, string role, string returnUrl = null) {
+
+            ViewData["ReturnUrl"] = returnUrl;
 
             if (ModelState.IsValid) {
                 var user = new User () { UserName = loginVM.UserName };
@@ -75,6 +77,7 @@ namespace test_work_fin_12.Controllers {
 
                     return RedirectToAction ("Index", "Home");
                 }
+                // return RedirectToLocal (returnUrl);
             }
 
             return View (loginVM);

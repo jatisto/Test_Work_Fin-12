@@ -4,7 +4,7 @@
 <div class="ibox-content m-b-sm border-bottom marginmy">
     <div class="col-md-8 col-md-offset-2" style="margin-left: 178px;">
         <h2>Пожалуйста, войдити в систему</h2>
-        <form asp-controller="Account" asp-action="Login" method="post" class="form-horizontal" role="form">
+        <form asp-controller="User" asp-action="Login" method="post" class="form-horizontal" role="form">
             <h4>Введите свои данные</h4>
             <hr />
             <input type="hidden" asp-for="ReturnUrl" />
@@ -26,50 +26,11 @@
 
             <div class="form-group pull-right formPullRightButton">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" id="loginBtn" class="btn btn-w-m btn-success btnmy" value="Log in" />
+                    <input type="submit" id="loginBtn" class="btn btn-w-m btn-success btnmy" 
+                    style="margin-top: 15px;" value="Log in" />
                 </div>
             </div>
         </form>
     </div>
 </div>
-
-
- <script src="~/lib/signalr/dist/browser/signalr.js"></script>
-    <script>
-        let token;
-        const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/chat", { accessTokenFactory: () => token})
-            .build();
-        
-        // аутентификация
-        document.getElementById("loginBtn").addEventListener("click", function (e) {           
-            var request = new XMLHttpRequest();
-            request.open("POST", "/token", true);
-            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.addEventListener("load", function () {
-                if (request.status < 400) { // если запрос успешный
- 
-                    let data = JSON.parse(request.response);    
-                    token = data.access_token;
- 
-                    document.getElementById("sendBtn").disabled = false;
- 
-                    hubConnection.start()       // начинаем соединение с хабом
-                    .catch(err => {  
-                        console.error(err.toString());
-                        document.getElementById("loginBtn").disabled = true;
-                        document.getElementById("sendBtn").disabled = true;
-                    });
-                }
-                else {
-                    console.log("Status", request.status);
-                    console.log(request.responseText);
-                }
-            });
-            // отправляем запрос на аутентификацию
-            request.send("username=" + document.getElementById("userName").value +
-                "&password=" + document.getElementById("userPassword").value);
-        });
-    </script>
-
 
