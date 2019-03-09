@@ -11,7 +11,13 @@
         <link rel="stylesheet" href="~/css/bootstrap.min.css">
         <link rel="stylesheet" href="~/css/Site.css">
         <link rel="stylesheet" href="~/css/card.css">
+        <link rel="stylesheet" href="~/css/rating.css">
+        <link rel="stylesheet" href="~/css/styleyModal.css">
+        <!-- <link rel="stylesheet" href="~/css/star.css"> -->
+        <link rel="stylesheet" href="~/css/jquery.rating.css">
+        <link rel="stylesheet" href="~/css/styles.css">
         <link rel="stylesheet" href="~/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	    	
     </environment>
     <environment exclude="Development">
@@ -39,7 +45,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>                         -->
+                        </li> -->  
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cafe" asp-action="List">Мои заведения</a>
+                        </li> 
                     </ul> 
                                      
                 </div>
@@ -56,15 +65,13 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <!-- <div class="container">
-            &copy; 2019 - test_work_fin_12 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div> -->
-    </footer>
+   
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/jquery.rating-2.0.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
@@ -79,8 +86,10 @@
                 crossorigin="anonymous"
                 integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

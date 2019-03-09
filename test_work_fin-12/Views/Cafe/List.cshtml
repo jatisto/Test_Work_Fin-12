@@ -4,31 +4,17 @@
     <div>
         <h1>List Cafe</h1>
     </div>
+
+
+
 <a class="btn btn-primary" asp-controller="Cafe" asp-action="NewCafe">Добавить кафе</a>
 <h1>@ViewBag.Name</h1>
 
     @{
         foreach (var item in Model.CafeListVM)
         {
-            
-
-            <!-- <div class="col-sm-4 col-lg-4 col-md-4" style="float: left; ">
-            <div class="border">
-                <div class="wrap">
-                  <div class="product-wrap">
-                    <a href=""><img src="../@item.ImageUrl" alt=""/></a>
-                  </div>
-                </div>
-                  <div class="product-info">
-                    <div class="stars"></div>
-                    <h3 class="product-title">Название кафе: @item.Name</h3>
-                    <h3 class="product-title">Имя пользователя: @item.User.UserName</h3>
-                    <h3 class="product-title">Описание: @item.Description</h3>
-                    <div class="price">@item.Score</div>
-                 </div>
-            </div> 
-        </div> -->
-    <div class="col-sm-4 col-lg-4 col-md-4" style="float: left; ">
+           
+          <div class="col-sm-4 col-lg-4 col-md-4" style="float: left;"  id="idImagesClick" data-id="@item.Id">
             <div class="product-wrap">
             <div class="product-image">
               <a href=""><img src="../@item.ImageUrl" alt=""/></a>
@@ -42,7 +28,7 @@
                     </div>
 
                     <div class="quikview">
-                      <a class="quikview-button" href="#" title="Быстрый просмотр"></a>
+                      <a class="quikview-button" asp-controller="Cafe" asp-action="Details"  asp-route-id="@item.Id" title="Быстрый просмотр"></a>
                     </div>
                     </div>
                   </div>
@@ -52,10 +38,123 @@
               <h3 style="font-size: 17pt;">Название кафе: @item.Name</h3>
               <h3>Имя пользователя: @item.User.UserName</h3>
               <h3>Описание: @item.Description</h3>
-              <div class="price">@item.Score</div>
+              <div class="price">@item.Score</div>  
+
+            <div class="star-rating" data-id="@item.Id" >
+              <div class="star-rating__wrap">
+                <input class="star-rating__input" id="star-rating-5"  onclick="click5()"  type="radio" name="rating" value="5">
+                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
+                <input class="star-rating__input" id="star-rating-4" onclick="click4()"  type="radio" name="rating" value="4">
+                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
+                <input class="star-rating__input" id="star-rating-3"  onclick="click3()"  type="radio" name="rating" value="3">
+                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
+                <input class="star-rating__input" id="star-rating-2" onclick="click2()" type="radio" name="rating" value="2">
+                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
+                <input class="star-rating__input" id="star-rating-1"  onclick="click1()" type="radio" name="rating" value="1">
+                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
+              </div>
             </div>
-            </div>
-    </div>
+        </div>
+        </div>
+        </div>
             
         }
     }
+
+    
+
+
+    <script>
+
+       
+
+      function click5() {
+
+              var r5 = document.getElementById("star-rating-5").value;
+              var rid = document.getElementById("idImagesClick");
+              var idImages = rid.getAttribute('data-id');
+              debugger;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Rating", "Cafe")',
+                    data: {
+                        rating: r5,
+                        id: idImages,
+                    },
+                    success: function (data) {
+                        console.log('success!');
+                    }
+                });
+            }
+
+      function click4() {
+              var r4 = document.getElementById("star-rating-4").value;
+              var rid = document.getElementById("idImagesClick");
+              var idImages = rid.getAttribute('data-id');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Rating", "Cafe")',
+                    data: {
+                        rating: r4,
+                        id: idImages,
+                    },
+                    success: function (data) {
+                        console.log('success!');
+                    }
+                });
+            }
+      function click3() {
+              var r3 = document.getElementById("star-rating-3").value;
+              var rid = document.getElementById("idImagesClick");
+              var idImages = rid.getAttribute('data-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Rating", "Cafe")',
+                    data: {
+                        rating: r3,
+                        id: idImages,
+                    },
+                    success: function (data) {
+                        console.log('success!');
+                    }
+                });
+            }
+      function click2() {
+              var r2 = document.getElementById("star-rating-2").value;
+              var rid = document.getElementById("idImagesClick");
+              var idImages = rid.getAttribute('data-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Rating", "Cafe")',
+                    data: {
+                        rating: r2,
+                        id: idImages,
+                    },
+                    success: function (data) {
+                        console.log('success!');
+                    }
+                });
+            }
+      function click1() {
+              var r1 = document.getElementById("star-rating-1").value;
+              var rid = document.getElementById("idImagesClick");
+              var idImages = rid.getAttribute('data-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Rating", "Cafe")',
+                    data: {
+                        rating: r1,
+                        id: idImages,
+                    },
+                    success: function (data) {
+                        console.log('success!');
+                    }
+                });
+            }
+    </script>
+
+

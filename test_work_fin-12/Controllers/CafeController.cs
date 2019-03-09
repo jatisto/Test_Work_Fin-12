@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -18,14 +19,17 @@ namespace test_work_fin_12.Controllers {
         private readonly ICafeRepository _cafeRepository;
         private readonly FileUploadService _fileUploadService;
         private readonly IHostingEnvironment _appEnvironment;
+        private AppDbContext _context;
 
         public CafeController (
             ICafeRepository cafeRepository,
             IHostingEnvironment appEnvironment,
             FileUploadService fileUploadService,
-            UserManager<User> userManager) {
+            UserManager<User> userManager,
+            AppDbContext context) {
             // _userRepository  = userRepository;
             _cafeRepository = cafeRepository;
+            _context = context;
             _appEnvironment = appEnvironment;
             _fileUploadService = fileUploadService;
             _userManager = userManager;
@@ -34,9 +38,10 @@ namespace test_work_fin_12.Controllers {
             return View ();
         }
         public ViewResult List () {
+            var userId = _userManager.GetUserId (User);
             ViewBag.Name = "Cafe";
             CafeVM vm = new CafeVM ();
-            vm.CafeListVM = _cafeRepository.CafesList;
+            vm.CafeListVM = _cafeRepository.CafesList.Where (u => u.UserId == userId);
             return View (vm);
         }
 
@@ -54,7 +59,8 @@ namespace test_work_fin_12.Controllers {
                 Description = cafe.Description,
                 UserId = userId,
                 Score = cafe.Score,
-                Image = cafe.Image
+                Image = cafe.Image,
+                Content = cafe.Content
             };
 
             if (model.Image != null) {
@@ -64,6 +70,33 @@ namespace test_work_fin_12.Controllers {
             }
             _cafeRepository.Create (model);
             return RedirectToAction ("List");
+        }
+
+        public IActionResult Rating (string id, int rating) {
+            var userId = _userManager.GetUserId (User);
+            var ratingGet = _cafeRepository.GetSingleCafeById (id);
+            ratingGet.Score = rating;
+            _cafeRepository.Edit (ratingGet);
+            return RedirectToAction ("Index", "Home");
+        }
+
+        public IActionResult ContentList (string id, string content) {
+            var userId = _userManager.GetUserId (User);
+            var ratingGet = _cafeRepository.GetSingleCafeById (id);
+            ratingGet.Content = content;
+            _cafeRepository.Edit (ratingGet);
+            return RedirectToAction ("Index", "Home");
+        }
+
+        public IActionResult Details (string id) {
+            var cafe = _cafeRepository.GetSingleCafeById (id);
+            return View (cafe);
+        }
+
+        public IActionResult Delete (string id) {
+            var cafe = _cafeRepository.GetSingleCafeById (id);
+            _cafeRepository.Delete (cafe);
+            return View ();
         }
 
         #region UploadPhoto

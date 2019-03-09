@@ -44,7 +44,7 @@ namespace test_work_fin_12.Controllers {
 
                 if (result.Succeeded) {
                     if (string.IsNullOrEmpty (loginVM.ReturnUrl))
-                        return RedirectToAction ("Index", "Home");
+                        return RedirectToAction ("List", "Cafe");
                     return Redirect (loginVM.ReturnUrl);
                 }
             }

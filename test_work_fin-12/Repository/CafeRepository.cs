@@ -14,7 +14,7 @@ namespace test_work_fin_12.Repository {
             _context = context;
         }
 
-        public IEnumerable<Cafe> CafesList => _context.Cafes.Include(u => u.User);
+        public IEnumerable<Cafe> CafesList => _context.Cafes.Include (u => u.User);
 
         public List<Cafe> AllCafes () {
             return _context.Cafes.ToList ();
@@ -35,8 +35,9 @@ namespace test_work_fin_12.Repository {
             _context.SaveChangesAsync ();
         }
 
+
         public Cafe GetSingleCafeById (string id) {
-            var cafe = _context.Cafes.FirstOrDefault (u => u.Id == id);
+            var cafe = _context.Cafes.Include (a => a.User).FirstOrDefault (u => u.Id == id);
             return cafe;
         }
 
