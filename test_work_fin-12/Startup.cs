@@ -13,7 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using test_work_fin_12.Data;
+using test_work_fin_12.Interface;
+using test_work_fin_12.Mocks;
 using test_work_fin_12.Models;
+using test_work_fin_12.Repository;
 
 namespace test_work_fin_12 {
     public class Startup {
@@ -31,6 +34,8 @@ namespace test_work_fin_12 {
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<ICafeRepository, CafeRepository> ();
+
             services.AddDbContext<AppDbContext> (options =>
                 options.UseSqlServer (Configuration.GetConnectionString ("DefaultConnection")));
 
@@ -44,7 +49,9 @@ namespace test_work_fin_12 {
                     })
                 .AddEntityFrameworkStores<AppDbContext> ()
                 .AddDefaultTokenProviders ();
-            
+
+            services.AddScoped<FileUploadService> ();
+
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
         }
 

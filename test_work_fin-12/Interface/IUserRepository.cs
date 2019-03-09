@@ -8,5 +8,6 @@ namespace test_work_fin_12.Interface {
         void Delete (User user);
         User GetSingleUser (string id);
         List<User> AllUsers ();
+        IEnumerable<User> Useries { get; }
     }
 }

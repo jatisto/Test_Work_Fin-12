@@ -21,9 +21,10 @@ namespace test_work_fin_12 {
                 var services = scope.ServiceProvider;
                 try {
                     var context = services.GetService<AppDbContext> ();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>> ();
+                    // var roleManager = services.GetRequiredService<RoleManager<IdentityRole>> ();
 
-                    IdentityDataInit.SeedData (roleManager);
+                    // IdentityDataInit.SeedData (roleManager);
+                    DbInitializer.Seed(context);
                 } catch {
                     //Обработка ошибки
                 }
