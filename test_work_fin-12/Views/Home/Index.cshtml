@@ -66,115 +66,23 @@
         </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!--         
         <form  method="post" asp-action="ContentList">
           <input  name="content"  class="form-control" />
           <input  name="id"  class="hidden" />
+=======
+          </div>
+          </div>
+>>>>>>> Fin
 
-        </div>
-          <input type="submit" class="btn btn-w-m btn-social" value="Отправить">
-        </form> -->
-            
+              <input name="id" value="@item.Id" type="hidden"/>
+              </form>
         }
     }
 
-    
 
-
-    <script>
-
-       
-
-      function click5() {
-
-              var r5 = document.getElementById("star-rating-5").value;
-              var rid = document.getElementById("idImagesClick");
-              var idImages = rid.getAttribute('data-id');
-              debugger;
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Rating", "Cafe")',
-                    data: {
-                        rating: r5,
-                        id: idImages,
-                    },
-                    success: function (data) {
-                        console.log('success!');
-                    }
-                });
-            }
-
-      function click4() {
-              var r4 = document.getElementById("star-rating-4").value;
-              var rid = document.getElementById("idImagesClick");
-              var idImages = rid.getAttribute('data-id');
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Rating", "Cafe")',
-                    data: {
-                        rating: r4,
-                        id: idImages,
-                    },
-                    success: function (data) {
-                        console.log('success!');
-                    }
-                });
-            }
-      function click3() {
-              var r3 = document.getElementById("star-rating-3").value;
-              var rid = document.getElementById("idImagesClick");
-              var idImages = rid.getAttribute('data-id');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Rating", "Cafe")',
-                    data: {
-                        rating: r3,
-                        id: idImages,
-                    },
-                    success: function (data) {
-                        console.log('success!');
-                    }
-                });
-            }
-      function click2() {
-              var r2 = document.getElementById("star-rating-2").value;
-              var rid = document.getElementById("idImagesClick");
-              var idImages = rid.getAttribute('data-id');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Rating", "Cafe")',
-                    data: {
-                        rating: r2,
-                        id: idImages,
-                    },
-                    success: function (data) {
-                        console.log('success!');
-                    }
-                });
-            }
-      function click1() {
-              var r1 = document.getElementById("star-rating-1").value;
-              var rid = document.getElementById("idImagesClick");
-              var idImages = rid.getAttribute('data-id');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Rating", "Cafe")',
-                    data: {
-                        rating: r1,
-                        id: idImages,
-                    },
-                    success: function (data) {
-                        console.log('success!');
-                    }
-                });
-            }
-    </script>
-
-
+<<<<<<< HEAD
 =======
           </div>
           </div>
@@ -185,9 +93,14 @@
     }
 
 
+=======
+>>>>>>> Fin
     
 @section Scripts {
 <script src="~/js/rating.js"></script>
     
 }
+<<<<<<< HEAD
+>>>>>>> Fin
+=======
 >>>>>>> Fin
