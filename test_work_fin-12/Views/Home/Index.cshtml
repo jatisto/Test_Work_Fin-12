@@ -2,17 +2,15 @@
 @model CafeVM
 
 
-<div class="text-center">
-    <h5 class="display-5">Test_work_FIN-12</h5> 
-</div>
+
 
 <a class="btn btn-primary" asp-controller="Cafe" asp-action="NewCafe">Добавить кафе</a><hr/>
 
     @{
         foreach (var item in Model.CafeListVM)
         {
-           
-          <div class="col-sm-4 col-lg-4 col-md-4" style="float: left;"  id="idImagesClick" data-id="@item.Id">
+           <form asp-controller="Home" asp-action="Rating" method="post" class="form-horizontal">
+          <div class="col-sm-4 col-lg-4 col-md-4" style="float: left;"  asp-for="@item.Id" name="id" data-id="@item.Id">
             <div class="product-wrap">
             <div class="product-image">
               <a href=""><img src="../@item.ImageUrl" alt=""/></a>
@@ -36,39 +34,38 @@
               <h3 style="font-size: 17pt;">Название кафе: @item.Name</h3>
               <h3>Имя пользователя: @item.User.UserName</h3>
               <h3>Описание: @item.Description</h3>
-              <div class="price">@item.Score</div>  
-
-            <div class="star-rating" data-id="@item.Id" >
-              <div class="star-rating__wrap">
-                <input class="star-rating__input" id="star-rating-5"  onclick="click5()"  type="radio" name="rating" value="5">
-                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
-                <input class="star-rating__input" id="star-rating-4" onclick="click4()"  type="radio" name="rating" value="4">
-                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-                <input class="star-rating__input" id="star-rating-3"  onclick="click3()"  type="radio" name="rating" value="3">
-                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-                <input class="star-rating__input" id="star-rating-2" onclick="click2()" type="radio" name="rating" value="2">
-                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
-                <input class="star-rating__input" id="star-rating-1"  onclick="click1()" type="radio" name="rating" value="1">
-                <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
-              </div>
-            </div>
-        </div>
-        </div>
-        <!-- <form  method="post" asp-action="ContentList">
-          <input  name="content"  class="form-control" />
-          <input  name="id"  class="hidden" />
-
-        </div>
-          <input type="submit" class="btn btn-w-m btn-social" value="Отправить">
-        </form> -->
-
+              <div class="price">@item.Score</div> 
+              
           </div>
-        
 
+    <hr />
+    <div class="form-group">
+        <label asp-for="Rating" class="col-lg-12 col-sm-12 control-label" >Rating</label>
+        <div class="col-lg-12">
+            <span class="rating">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    var starClass = "star";
+                    if (@item.Rating == 6 - i)
+                    {
+                        starClass += " active";
+                    }
+                    <span data-value="@(6 - i)" class="@starClass"></span>
+                }
+            </span>
+        </div>
+        <input asp-for="Rating" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" class="btn btn-primary"  value="Submit" />
+        </div>
+    </div>
         <div>
           @item.Content
         </div>
 
+<<<<<<< HEAD
 <!--         
         <form  method="post" asp-action="ContentList">
           <input  name="content"  class="form-control" />
@@ -178,3 +175,19 @@
     </script>
 
 
+=======
+          </div>
+          </div>
+
+              <input name="id" value="@item.Id" type="hidden"/>
+              </form>
+        }
+    }
+
+
+    
+@section Scripts {
+<script src="~/js/rating.js"></script>
+    
+}
+>>>>>>> Fin

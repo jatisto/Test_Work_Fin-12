@@ -1,50 +1,92 @@
-﻿#cartButton{
-    margin-right:8px;
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-nav{
-    padding:8px;
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.loginForm{
-    margin:10%;
+
+/* Rating */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-.checkoutForm{
-     margin-top:5%;
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.orderForm{
-     margin-top:5%;
-     border-radius:20px;
-     border-style:solid;
-     border-color:#2fa4e7;
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
 }
 
-a.remove{
-    text-decoration:none;
-}
-a.remove:hover{
-    color:blue;
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
 }
 
-.center_div{
-    margin: 0 auto;
-    width:80% /* value of your choice which suits your alignment */
+.field-validation-valid {
+    display: none;
 }
 
-.marginTop{
-    margin-top:5%;
+input.input-validation-error {
+    border: 1px solid #b94a48;
 }
 
-.marginTop1{
-    margin-top:2%;
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
 }
 
-.formPullRightButton {
-    margin-right:10px !important
+.validation-summary-errors {
+    color: #b94a48;
 }
 
-.carousel img {
-    min-width: 100%;
+.validation-summary-valid {
+    display: none;
 }
+
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 30px;
+}
+
+.rating span.star, .rating span.star {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+}
+
+.rating span.star:hover, .rating span.star:hover {
+    cursor: pointer;
+}
+
+.rating span.star:before, .rating span.star:before {
+    content: "★";
+    padding-right: 5px;
+    color: #BEC3C7;
+}
+
+.rating span.star:hover:before, .rating span.star:hover:before, .rating span.star:hover ~ span.star:before, .rating span.star:hover ~ span.star:before {
+    content: "★";
+    color: #41CAC0;
+}
+
+.rating span.star.active::before, .rating span.star.active::before, .rating span.star.active ~ span.star::before, .rating span.star.active ~ span.star::before {
+    color: #41cac0;
+    content: "★";
+}
+
+

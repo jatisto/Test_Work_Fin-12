@@ -15,8 +15,9 @@ namespace test_work_fin_12.Models {
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public int Score { get; set; }
+        public int Rating { get; set; }
         public string UserId { get; set; }
-        public  User User { get; set; }
+        public User User { get; set; }
         public string Content { get; set; }
     }
 }
